@@ -1,0 +1,7 @@
+.popular {
+    display : flex;
+    gap : 15px;
+}
+img {
+    height : 170px;
+}
