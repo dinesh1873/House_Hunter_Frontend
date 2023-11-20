@@ -21,7 +21,7 @@ export function Signup(){
     const handleSubmit = (event) => {
         event.preventDefault();
        const data={email:formData.email};
-        Axios.post("http://localhost:4000/SellerRoute/emailcheck",data)
+        Axios.post("https://house-hunter-backend.onrender.com/SellerRoute/emailcheck",data)
         .then((res)=>{
             if(res.status===200){
                 alert("Your email is already registered");
