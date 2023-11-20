@@ -1,0 +1,16 @@
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .heart-icon {
+    font-size: 2em; /* Adjust the size as needed */
+    color: black; /* Initial color */
+  }
+  
+  .heart-icon:active {
+    color: red; /* Color when clicked */
+  }
+  

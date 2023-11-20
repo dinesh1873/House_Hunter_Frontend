@@ -14,7 +14,7 @@ export function AddProperty(props) {
         formData.append('budget', budget);
         formData.append('propertyType', propertyType);
         console.log(propertyType);
-        Axios.post("https://realback-iz4i.onrender.com/SellerRoute/add-property", formData)
+        Axios.post("https://house-hunter-backend.onrender.com/SellerRoute/add-property", formData)
             .then((res) => {
                 if (res.status === 200) {
                     alert("Property added successfully");

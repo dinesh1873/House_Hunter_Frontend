@@ -4,9 +4,9 @@ import Select from 'react-select';
 import { AllProperties } from './AllProperties';
 
 
-const NavBar1 = () => {
+const Filter = () => {
     const [selectedPropertyType, setSelectedPropertyType] = useState('');
-
+    
     const handlePropertyTypeChange = (event) => {
       setSelectedPropertyType(event.target.value);
     };
@@ -88,4 +88,4 @@ const NavBar1 = () => {
   );
 };
 
-export default NavBar1;
+export default Filter;

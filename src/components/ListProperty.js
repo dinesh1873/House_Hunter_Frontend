@@ -7,7 +7,7 @@ export function ListProperty(props){
 
     useEffect(() => {
         const getList = () => {
-            Axios.get(`https://realback-iz4i.onrender.com/SellerRoute/list-property/${id}`)
+            Axios.get(`https://house-hunter-backend.onrender.com/SellerRoute/list-property/${id}`)
             .then((res) => {
                 if(res.status === 200){
                     const proparr = res.data.property;
@@ -24,7 +24,7 @@ export function ListProperty(props){
     }, [id]);
 
     const handleClick = (propertyId) => {
-        Axios.put(`https://realback-iz4i.onrender.com/SellerRoute/delete-property/${id}/${propertyId}`)
+        Axios.put(`https://house-hunter-backend.onrender.com/SellerRoute/delete-property/${id}/${propertyId}`)
             .then((res) => {
                 if (res.status === 200) {
                     alert("Property deleted successfully");
@@ -43,7 +43,7 @@ export function ListProperty(props){
                 {
                     arr.map((value) => (
                         <div className="card m-2 w-25" key={value._id}>
-                            <img class="card-img-top" src={`https://realback-iz4i.onrender.com/uploads/${value.image}`} alt="Card image"></img>
+                            <img class="card-img-top" src={`https://house-hunter-backend.onrender.com/uploads/${value.image}`} alt="Card image"></img>
                             <div className="card-body">
                                 <h4 className="card-title">{value.propertyType}</h4>
                                 <p className="card-text"><b>Location:</b>{value.location.charAt(0).toUpperCase()+value.location.slice(1)}</p>

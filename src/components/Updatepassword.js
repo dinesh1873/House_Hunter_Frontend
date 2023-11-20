@@ -6,12 +6,22 @@ export function Updatepassword(){
     const [password,setPassword]=useState('');
     const handleClick=()=>{
         const data={email:email,password:password};
-        Axios.put("https://realback-iz4i.onrender.com/SellerRoute/update",data)
+        Axios.put("http://localhost:4000/SellerRoute/update",data)
         .then((res)=>{
             console.log(res.data);
             if(res.status===200){
                 console.log(res);
                 alert(res.data);
+            }else{
+                Promise.reject();
+            }
+        })
+        .catch((err)=>alert(err));
+        Axios.put("https://house-hunter-backend.onrender.com/BuyerRoute/update",data)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.status===200){
+                console.log(res);
             }else{
                 Promise.reject();
             }
@@ -30,7 +40,7 @@ export function Updatepassword(){
                             <label htmlFor="pwd" className="form-label">Password:</label>
                             <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd"  onChange={(event) => setPassword(event.target.value)} />
                         </div>
-                        <button type="submit" className="btn btn-primary">Update Password</button>
+                        <button type="button" className="btn btn-primary" onClick={handleClick}>Update Password</button>
                         <p>New to Website?<Link to="/selllogin">Login</Link></p>
                     </form>
                 </div>

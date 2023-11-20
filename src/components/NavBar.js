@@ -21,8 +21,9 @@ function NavBar() {
         <img src={logo} alt="Avatar Logo" style={imageStyle} className="rounded-pill" />
         <h3 className="text-light mb-0">House Hunter</h3>
         <h4 className="text-light ms-4 mb-0"><Link to="/" className="nav-link" >Home</Link></h4>
-        <h4 className="text-light ms-4 mb-0"><Link to="/buy-listing" className="nav-link" >Buy</Link></h4>
+        <h4 className="text-light ms-4 mb-0"><Link to="/buyerlogin" className="nav-link" >Buy</Link></h4>
         <h4 className="text-light ms-4 mb-0"><Link to="/selllogin" className="nav-link">Sell</Link></h4>
+        <h4 className="text-light ms-4 mb-0"><Link to="/aboutus" className="nav-link">About</Link></h4>
       </div>
       <button className="btn btn-light me-2" type="button">
         <Link to="/signup" className="nav-link">Signup</Link>

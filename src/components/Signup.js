@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Axios from 'axios';
-import { Link } from "react-router-dom";
+import "./Signup.css";
 export function Signup(){
     const [submit,setSubmit]=useState(false);
     const [formData, setForm] = useState({
@@ -10,14 +10,6 @@ export function Signup(){
         "mobile":"",
         "property":[]
     });
-
-    const styles = {
-        borderRadius : "50%",
-        height : "40vh",
-        width : "40%",
-        float : "left",
-    };
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setForm(prevState => ({
@@ -29,7 +21,7 @@ export function Signup(){
     const handleSubmit = (event) => {
         event.preventDefault();
        const data={email:formData.email};
-        Axios.post("https://realback-iz4i.onrender.com/SellerRoute/emailcheck",data)
+        Axios.post("http://localhost:4000/SellerRoute/emailcheck",data)
         .then((res)=>{
             if(res.status===200){
                 alert("Your email is already registered");
@@ -46,7 +38,7 @@ export function Signup(){
     if(submit){
         const data={name:formData.name,password:formData.password,email:formData.email,mobile:formData.mobile,property:formData.property};
         console.log(data);
-        Axios.post("https://realback-iz4i.onrender.com/SellerRoute/create-user",data)
+        Axios.post("https://house-hunter-backend.onrender.com/SellerRoute/create-user",data)
         .then((res)=>{
             if(res.status===200){
                 alert("Your Details Submitted Successfully");
@@ -55,23 +47,37 @@ export function Signup(){
             }
         })
         .catch((err)=>alert(err));
+        Axios.post("https://house-hunter-backend.onrender.com/BuyerRoute/create-user",data)
+        .then((res)=>{
+            if(res.status===200){
+                alert("Your Details Submitted Successfully");
+            }else{
+                Promise.reject();
+            }
+        })
+        .catch((err)=>alert(err));
+        Axios.post("https://house-hunter-backend.onrender.com/Mail/signupmail", data)
+      .then((res) => {
+        if (res.status === 200) {
+          alert("email sent");
+        } else {
+          return Promise.reject();
+        }
+      })
+      .catch((err) => alert(err));
     }
 
     return(
-        <div class="container-fluid pt-5 mt-5">
-        <div class="row">
-         <div class="col-sm-7 bg-white">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYK8hXUFuLlCzim6QiTP5r8sohUX7CmSbuQSiXXFrygdnUG-3LNjy1ILum82QSu9Z5ro8&usqp=CAU" alt="image" style={styles}></img>
-          <h2 class="pt-5 mt-5 text-danger">Welcome to House Hunter!!</h2>
-          <p style={{justifyContent : "center" , lineHeight : "1.7rem"}} class="pt-3">At House Hunter, we understand that finding the perfect home is a journey,
-             and we're here to make that journey as seamless as possible for you.
-              Whether you're looking to buy, sell, or rent a home or villa, we've got you covered.
-              At House Hunter, we believe that finding the perfect home is not just about brick and mortar; it's about fulfilling dreams and creating lasting memories. 
-              </p>
-         </div>
-         <div class="col-sm-5 bg-light">
-         <form style={{ width: "50%", margin: "auto" }} onSubmit={handleSubmit}>
-            <h3 className="text-center text-danger">SIGN UP FORM</h3>
+        <div  >
+        <div className="container-fluid p-5 m-5">
+          <div className="row">
+            <div className="col-sm-6 bg-white">
+              <img style={{height : "70vh"}} src="https://img.freepik.com/free-vector/beautiful-home_24877-50819.jpg" alt="home"></img>
+            </div>
+            <div className="col-sm-6 bg-white pt-5">
+              <h2 style={{paddingLeft : "17%"}}>Welcome to House Hunter</h2>
+              <form style={{ width: "60%", margin: "auto" }} onSubmit={handleSubmit}>
+            
             <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">Full Name:</label>
                 <input type="text" className="form-control" id="name" placeholder="Enter Your Full Name" name="name" onChange={handleChange} />
@@ -89,11 +95,12 @@ export function Signup(){
                 <input type="text" className="form-control" id="mobile" placeholder="Enter Mobile No:" name="mobile" onChange={handleChange} />
             </div>
             <button type="submit" className="btn btn-primary">Submit Details</button>
-            <p>Login page<Link to="*">Login</Link></p>
         </form>
-       </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    
     
     )
 }
